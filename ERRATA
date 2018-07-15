@@ -1,2 +1,39 @@
 ERRATA is on Rago's website http://www.apuebook.com/errata2e.html
 Is separated by printings
+
+
+
+Welcome to the web site dedicated to the support of the second edition of Advanced Programming in the UNIX® Environment.
+
+The following errors were fixed in the second printing.
+
+    Page 413, third paragraph. If a signal is related to an expiring timer, it is sent to an arbitrary thread, not necessarily to the thread that scheduled the timer. Hardware-related signals are usually delivered to the thread generating the fault (FreeBSD 5.2.1 seems to depart from this is some cases, however). Look here for some test programs that illustrate the behavior of signals with multithreaded processes.
+    Page 67, sentence before Section 3.7. The size is 2GB, not 2TB.
+    Page 523, Figure 15.26. The largest message we can send on FreeBSD 5.2.1 is 2048 bytes. The kernel limits this value to the maximum size in bytes allowed on a queue.
+    Page 367, Figure 11.6. pthread_cancel_push should be pthread_cleanup_push.
+    Page 382, last sentence on page. pthread_mutex_destroy should be pthread_cond_destroy.
+    Page 357, function prototype for pthread_create. The argument for the start routine is a void *, not a void.
+    Page 158, near bottom of page. tempfile should be tmpfile.
+    Page 853, solution to exercise 1.3. ptr should be msg to make it consistent with the function prototype for perror shown earlier in the book.
+
+The following errors were fixed in the third printing.
+
+    Page 194, function prototypes for setenv and unsetenv. These functions return -1 on error, which is more specific than simply a nonzero return value.
+    Page 306, Figure 10.4. The Corrigenda for the Single UNIX Specification added abort and sockatmark to the list of reentrant functions.
+    Page 361, middle of page. The discussion of pthread_join has been cleaned up, making it clear which thread is placed in the detached state and that it is implementation-specific whether this function fails.
+    Page 365, Example at end of page. "nonzero" should be "zero."
+    Page 367, middle of page. The behavior of implementations varies concerning whether cleanup handlers are called if a thread returns from its start routine.
+    Page 367, end of page. pthread_join for a detached thread might not fail in some implementations, so change "will" to "can."
+    Page 374, middle of page. fh[idx] = fp->f_next should be fh[idx] = fp. Actually, I should apologize for this one. I've written this logic (correctly) so many times that I have no good excuse for getting it wrong this time. Same problem occurs again near the top of page 377.
+    Page 374, end of page. In the statement idx = HASH(fp) at the beginning of foo_find, fp is undefined at this point. The correct thing to do is to search every hash chain to find a matching ID. Same problem occurs again in the middle of page 377.
+    Page 391, function prototype for pthread_attr_setstack. Remove the const type qualifier.
+    Pages 414-415, Figure 12.16. Change the variable wait to waitloc to allow compilation on some platforms.
+    Page 599, Figure 17.16. The variable len should be declared to be of type socklen_t.
+    Pages 849 and 851 (Figures B.3 and B.4). The snprintf and vsnprintf calls should specify one byte less than the size of the buffer to prevent overwriting the byte after the end of the buffer with a newline.
+
+Here are the errors fixed in the fifth printing:
+
+    Page 255, top of page. ac_flag should be ac_stat.
+    Page 14, first paragraph. The statement that all threads in a process share the same stacks is a little misleading: each thread executes on its own stack, although any thread can access the stack of the other threads in the process, because the address space is shared among the threads.
+    Page 701, last paragraph. Figure 15.8 should be Figure 15.19.
+
